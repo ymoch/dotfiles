@@ -24,4 +24,10 @@ if which brew > /dev/null; then
     export PATH="$prefix/libexec/gnubin:$PATH"
     export MANPATH="$prefix/libexec/gnuman:$MANPATH"
   fi
+  
+  # GNU sed
+  if prefix=$(brew --prefix gnu-sed); then
+    export PATH="$prefix/libexec/gnubin:$PATH"
+    export MANPATH="$prefix/libexec/gnuman:$MANPATH"
+  fi
 fi
