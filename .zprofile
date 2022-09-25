@@ -5,6 +5,9 @@ fi
 if [[ -d "${HOME}/.local" ]]; then
   export PATH=${HOME}/.local/bin:${PATH}
 fi
+if [[ -d "$HOME/.poetry" ]]; then
+  export PATH="$HOME/.poetry/bin:$PATH"
+fi
 
 # Pyenv
 if which pyenv > /dev/null; then
