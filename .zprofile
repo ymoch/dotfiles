@@ -13,10 +13,12 @@ if which pyenv > /dev/null; then
   eval "$(pyenv init --path)"
 fi
 
-# Jenv
-if [[ -d $HOME/.jenv ]]; then
-  export PATH="$HOME/.jenv/bin:$PATH"
-  eval "$(jenv init -)"
+# nvm
+export NVM_DIR="$HOME/.nvm"
+if [ -e "$NVM_DIR/nvm.sh" ]; then
+  alias nvm='unalias nvm node npm && source "$NVM_DIR"/nvm.sh && source /opt/homebrew/opt/nvm/etc/bash_completion.d/nvm && nvm'
+  alias node='unalias nvm node npm && source "$NVM_DIR"/nvm.sh && source /opt/homebrew/opt/nvm/etc/bash_completion.d/nvm && node'
+  alias npm='unalias nvm node npm && source "$NVM_DIR"/nvm.sh && source /opt/homebrew/opt/nvm/etc/bash_completion.d/nvm && npm'
 fi
 
 function _source_if_exists() {
@@ -25,16 +27,6 @@ function _source_if_exists() {
     source "$script" || return $?
   fi
 }
-
-# nvm
-if [[ -d "$HOME/.nvm" ]]; then
-  export NVM_DIR="$HOME/.nvm"
-  _source_if_exists "/opt/homebrew/opt/nvm/nvm.sh"
-  _source_if_exists "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
-fi
-
-# Poetry
-_source_if_exists $HOME/.poetry/env
 
 # Homebrew.
 if which brew > /dev/null; then
