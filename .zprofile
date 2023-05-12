@@ -10,6 +10,7 @@ fi
 if which pyenv > /dev/null; then
   export PYENV_ROOT="$HOME/.pyenv"
   export PATH="$PYENV_ROOT/bin:$PATH"
+  export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
   eval "$(pyenv init --path)"
 fi
 
